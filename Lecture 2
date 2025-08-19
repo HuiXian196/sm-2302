@@ -1,0 +1,47 @@
+function plotSin(f1, f2)
+%Plot a sine wave with frequency f1 over the interval [0, 2pi]
+% using 16 samples per period
+
+if nargin == 1
+    %Determine the total number of samples
+    samplesPerPeriod = 16;
+    n = samplesPerPeriod * f1;
+
+    %Create the x-vector over [1, 2pi]
+    x = linspace(0, 2*pi, n);
+
+    %Compute the sine wave
+    y = sin(x);
+
+    %Plot the results
+    plot(x, y, 'b-');
+    xlabel('x');
+    ylabel('sin(f_1 x)');
+
+elseif nargin == 2
+    %disp('Two inputs were given')
+    figure;
+    %First subplot
+    subplot(2, 1, 1)
+    samples1 = 16 * f1;
+    %Create the x-vector for the first sine wave
+    x1 = linspace(0, 2*pi, samples1);
+    %Compute the first sine wave
+    y1 = sin(f1*x1);
+    %Plot the first sine wave
+    plot(x1, y1, 'r--s', 'LineWidth', 2, 'MarkerFaceColor', 'k', 'MarkerSize', 6);
+    xlabel('x')
+    title(['f_1 = ' num2str(f1)]);
+
+    %Second subplot
+    subplot(2, 1, 2)
+    samples2 = 16 * f2;
+    x2 = linspace(0, 2*pi, samples2);
+    y2 = sin(f2*x2);
+    plot(x2, y2, 'r--s', 'LineWidth', 2, 'MarkerFaceColor', 'k', 'MarkerSize', 6);
+    xlabel('x')
+    title(['f_2 = ' num2str(f2)]);
+
+end
+
+%Plot sine, 2D and 3D
