@@ -1,0 +1,38 @@
+%Tutorial 1
+
+%%Question 1 
+a = 10;
+b = 2.5 * 10^23;
+c = 2 + 3i; 
+d = exp(2j*pi/3);
+
+%%Question 2
+aVec = [3.14 15 9 26];      % row vector
+bVec = [2.71; 8; 28; 182];  %column vector
+cVec = linspace(5, -0.2, 5);
+dVec = logspace(0, 0.1, 10);
+eVec = 'Hello';
+
+%%Question 3a)
+n = 9;           %size of square vector
+aMat = 2 * ones (n, n);
+
+%%Question 3b)
+A = [1 2 3 4 5 4 3 2 1];
+bMat = diag(A, 0);
+
+%%Question 3c)
+%create a vector from 1 to 100
+B = 1:100;
+
+%reshape the vector into a 10x10 matrix
+cMat = reshape(B, 10, 10);
+
+%%Question 3d)
+dMat = nan(3, 4);
+%disp(dMat)
+
+%%Question 3e)
+eMat = [13 -1 5; -22 10 -87];
+
+%%Question 3f)
