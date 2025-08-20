@@ -1,38 +1,95 @@
-%Tutorial 1
+% Tutorial 1
 
-%%Question 1 
+%% Question 1 
 a = 10;
 b = 2.5 * 10^23;
 c = 2 + 3i; 
 d = exp(2j*pi/3);
 
-%%Question 2
-aVec = [3.14 15 9 26];      % row vector
-bVec = [2.71; 8; 28; 182];  %column vector
+%% Question 2
+aVec = [3.14 15 9 26];      % Row vector
+bVec = [2.71; 8; 28; 182];  % Column vector
 cVec = linspace(5, -0.2, 5);
 dVec = logspace(0, 0.1, 10);
 eVec = 'Hello';
 
-%%Question 3a)
-n = 9;           %size of square vector
+%% Question 3a)
+n = 9;                      % Size of square vector
 aMat = 2 * ones (n, n);
 
-%%Question 3b)
+%% Question 3b)
 A = [1 2 3 4 5 4 3 2 1];
 bMat = diag(A, 0);
 
-%%Question 3c)
-%create a vector from 1 to 100
+%% Question 3c)
+% Create a vector from 1 to 100
 B = 1:100;
 
-%reshape the vector into a 10x10 matrix
+% Reshape the vector into a 10x10 matrix
 cMat = reshape(B, 10, 10);
 
-%%Question 3d)
+%% Question 3d)
 dMat = nan(3, 4);
 %disp(dMat)
 
-%%Question 3e)
+%% Question 3e)
 eMat = [13 -1 5; -22 10 -87];
 
-%%Question 3f)
+%% Question 3f)
+% Generate a 5-by-3 matrix of random numbers in the range [0, 6)
+randomMatrix = rand(5, 3) * 6;          % Scale to [0, 6)
+% Use floor to get integers in the range [0, 5]
+integerMatrix = floor(randomMatrix);
+% Shift to the range [-3, 3]
+integerMatrix = integerMatrix - 3;      % Now in the range [-3, 2]
+disp(integerMatrix);
+
+% Generate a 5-by-3 matrix of random numbers in the range [0, 6)
+randomMatrix = rand(5, 3) * 6;          % Scale to [0, 6)
+% Use ceil to get integers in the range [1, 6]
+integerMatrix = ceil(randomMatrix);
+% Shift to the range [-3, 3]
+integerMatrix = integerMatrix - 4;      % Now in the range [-3, 2]
+disp(integerMatrix);
+
+fMat = randi([-3, 3], 5, 3);
+disp(fMat);
+
+%% Question 4
+x = 1/(1+exp(-(a-15))/6);
+y = (sqrt(a) + nthroot(b, 21))^pi;
+z = (log(real((c+d)*(c-d))*sin(a*pi/3)))/(c*conj(c));
+
+%% Question 5
+xMat = (aVec * bVec)*(aMat^2);
+yMat = (bVec * aVec);                   % Note that this is not the same as aVec * bVec
+
+tempMat = aVec * bVec;
+zMat = det(cMat)*transpose(tempMat);
+
+%% Question 7
+figure;
+
+%Create the x-vector over [0, 2pi]
+t = linspace(0, 2*pi, 100);             % 100 samples
+
+%Compute the sine wave
+y1 = sin(t);
+
+%Plot the results
+plot(t, y1, 'b', 'LineWidth', 2);       % Blue line
+hold on;
+
+% Compute the cosine wave
+y2 = cos(t);
+plot(t, y2, 'r:', 'LineWidth', 2);       % Red line for cosine wave
+
+xlabel('Time (s)');
+ylabel('Function value');
+title('Sine and cosine wave');
+legend('sin(t)', 'cos(t)');
+
+xlim([0 2*pi]);
+ylim([-1.4 1.4]);
+
+hold off;
