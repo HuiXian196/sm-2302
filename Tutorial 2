@@ -1,0 +1,70 @@
+%% Tutorial 2
+
+%% Question 1 - Semilog plot
+
+x = 0:1:6;
+y = exp(x);
+
+figure;
+semilogy(x, y, 'ms', 'MarkerSize', 10, 'LineWidth', 4, 'LineStyle', 'none');
+
+% Add labels and legend
+xlabel('Years');
+ylabel('Students');
+title('Number of students in Statistics class');
+
+xlim([0 6]);
+
+%% Question 2 - Subplot and axis modes
+
+figure;
+load('mitMap.mat');
+
+% First subplot
+subplot(2, 2, 1);
+imagesc(mit);
+colormap(cMap);
+axis square;
+title('Square');
+
+% Second subplot
+subplot(2, 2, 2);
+imagesc(mit);
+colormap(cMap);
+axis tight;
+title('Tight');
+
+% Third subplot
+subplot(2, 2, 3);
+imagesc(mit);
+colormap(cMap);
+axis equal;
+title('Equal');
+
+% Fourth subplot
+subplot(2, 2, 4);
+imagesc(mit);
+colormap(cMap);
+axis xy;
+title('XY');
+
+%% Question 3 - Interpolation and surface plots ----- START HERE
+
+Z0 = rand(0, 1); % Generate random heights for the surface
+
+x = 1:5; y = 1:5;
+X0 = meshgrid(x, y);
+Y0 = meshgrid(x, y);
+
+z = 1:0.1:5;
+X1 = meshgrid(x, y, z);
+Y1 = meshgrid(x, y, z);
+
+% Perform cubic interpolation
+Z1 = interp2(X0, Y0, Z0, X1, Y1, 'cubic');
+
+figure;
+surf(X1, Y1, Z1);
+colormap('hsv');
+shading interp;
+colorbar(clim([0 1]));
