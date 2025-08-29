@@ -58,3 +58,53 @@ plot(x_min, f(x_min), 'ro', 'MarkerFaceColor', 'r');
 xlabel('x');
 ylabel('y');
 title('Local minimum of f(x) on [-\pi, \pi]');
+
+%% Pg 27 - make a new script
+
+function dydt = chem(t,y)
+
+    dydt = zeros(2,1);             % Initialise dydt = [dA/dt; dB/dt] with y = [A; B]
+    dydt(1) = -10*y(1) + 50*y(2);   % dA/dt
+    dydt(2) = 10*y(1) - 50*y(2);   % dB/dt
+
+end
+
+%% Script to call and solve this ODE function - in a new script
+
+[t, y] = ode45(@chem, [0 0.5], [0 1]);
+% Time interval is from 0 to 0.5
+% Initial condition is A = 0, B = 1
+
+plot(t, y(:,1), 'b', t, y(:,2), 'r');    % Alternative to using hold on
+legend('A', 'B')
+
+%% Pg 29 - make a new script
+
+function dxdt = pendulum(t, x)
+
+    L = 1;
+    theta = x(1); gamma = x(2);
+
+    dtheta = gamma;
+    dgamma = -(9.8/L)*sin(theta);
+    dxdt = [dtheta; dgamma];
+
+end
+
+%% To call and solve pendulum ODE - in a new script
+
+[t, x] = ode45(@pendulum, [0 10], [0.9*pi 0]);
+% Time interval from 0 to 10
+% Initial conditions are theta(0) = o.9*pi, gamma(0) = 0
+
+plot(t, x(:,1), 'b', t, x(:,2), 'r')
+legend('angular position', 'angular velocity')
+
+%% Ex 4 - ODE
+
+func = @(t, y) -t*y/10;
+[t, y] = ode45(func, [0 10], 10);
+plot(t, y, 'b*');
+hold on;
+plot(t, 10*exp(-t.^2/20), 'r--');
+legend('Numerical', 'Analytical')
